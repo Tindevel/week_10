@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        #shape{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            top: 100px;
+            left: 100px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Reaction Game</h1>
+    <p>Click the shapes as quickly as you can.</p>
+    <p>your time: <span id="timeTaken" class = "bold"></span></p>
+    <div id="shape"></div>
+
+    <script ="text/javascript">
+        const shapeElement = document.getElementById("shape");
+        let startTime = new Date().getTime();
+
+        revealShape = () =>{
+            const size = Math.floor(Math.random() * 250) + 50;
+            const top = Math.floor(Math.random() * 400);
+            const left = Math.floor(Math.random() * 600);
+            const color = "#" + Math.random().toString(16).slice(2, 8);
+
+            shapeElement.style.width = size + "px";
+            shapeElement.style.height = size + "px";
+            shapeElement.style.top = top + "px";
+            shapeElement.style.left = left + "px";
+            shapeElement.style.backgroundColor = color;
+
+            if(Math.random() > 0.5){
+                shapeElement.style.borderRadius = "50%";
+            } else {
+            shapeElement.style.borderRadius = "0";
+            }
+
+
+            shapeElement.style.display = "block";
+            startTime = new Date().getTime();
+        }
+
+        triggerDelayTimer = () => {
+            setTimeout(revealShape, Math.random() * 1000);
+        }
+        
+
+        document.getElementById("shape").onclick = () => {
+            shapeElement.style.display = "none";
+            const endTime = new Date().getTime();
+            const duration = (endTime - startTime) / 1000;
+            document.getElementById("timeTaken").innerText = duration + "s";
+
+            triggerDelayTimer();
+        }
+            triggerDelayTimer();
+    </script>
+</body>
+</html>
