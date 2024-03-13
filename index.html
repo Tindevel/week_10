@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>How many fingers am I holding up?</h1>
+    <input type="text" id="guess">
+    <p id="feedback"></p>
+    <button id="submit">Guess</button>
+
+    <script type="text/javascript">
+        document.getElementById("submit").onclick = () =>{
+            const randomNumber = Math.floor(Math.random() * 6);
+            const guess = parseInt(document.getElementById("guess").value);
+
+            const feedbackElement = document.getElementById("feedback");
+            if(guess == randomNumber){
+                feedbackElement.style.color = "green";
+                feedbackElement.innerText = "correct!";
+            }
+            else{
+                feedbackElement.style.color = "red";
+                feedbackElement.innerText = "wrong! I was holding up " + randomNumber;}
+        }
+    </script>
+</body>
+</html>
